@@ -3,11 +3,12 @@ package grampus
 class Endpoint {
 	
 	String name
-	String address
 	String port
+	String protocol
+	String state
 	static hasMany = [ devices : Device ]
 	
     static constraints = {
-		address(nullable : true)
+		state(inList : ["offline", "online", "fault"])
     }
 }

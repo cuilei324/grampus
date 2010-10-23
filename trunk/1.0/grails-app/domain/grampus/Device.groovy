@@ -4,12 +4,11 @@ class Device {
 	
 	String name
 	String address
-	String port
-	String protocol
-	static hasMany = [ points : Point ]
+	String state
+	static hasMany = [ commands : Command ]
 	static belongsTo = [ endpoint : Endpoint ] 
 
     static constraints = {
-		port(nullable : true)
+		state(inList : ["offline", "online", "fault"])
     }
 }

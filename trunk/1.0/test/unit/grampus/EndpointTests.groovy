@@ -15,7 +15,7 @@ class EndpointTests extends GrailsUnitTestCase {
 		def testInstances = []
 		mockDomain(Endpoint, testInstances)
 		assertEquals 0, Endpoint.count()
-		new Endpoint(name : "TCP Server", address : "10.70.2.20", port : "8800").save()
+		new Endpoint(name : "TCP Server", port : "8800", protocol : "modbus", state : "offline").save()
 		assertEquals 1, Endpoint.count()
     }
 }
