@@ -11,13 +11,14 @@ import org.springframework.stereotype.Service;
 
 import ${package}.model.User;
 import ${package}.persistence.UserDao;
+import ${package}.rest.UserService;
 
 /**
  * @author Bill
  *
  */
-@Service("userService")
-public class UserServiceImpl {
+@Service("${package}.rest.UserService")
+public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private UserDao dao;
@@ -37,7 +38,7 @@ public class UserServiceImpl {
 		return Response.status(Status.OK).build();
 	}
 	
-	public User find(Long id) {
+	public User show(Long id) {
 		// TODO Auto-generated method stub
 		return dao.find(id);
 	}

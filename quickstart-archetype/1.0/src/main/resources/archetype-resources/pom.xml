@@ -5,6 +5,18 @@
   <artifactId>${artifactId}</artifactId>
   <version>${version}</version>
   <packaging>war</packaging>
+  <repositories>
+  	<repository>
+    	<id>maven.2</id>
+        <name>Maven 2 Repository</name>
+        <url>http://repo2.maven.org/maven2/</url>
+    </repository>
+  	<repository>
+    	<id>java.net.2</id>
+        <name>Java Net 2 Repository</name>
+        <url>http://download.java.net/maven/2</url>
+    </repository>
+  </repositories>
   <dependencies>
   	<dependency>
   		<groupId>org.springframework</groupId>
@@ -12,14 +24,19 @@
   		<version>${spring.version}</version>
   	</dependency>
   	<dependency>
-      <groupId>org.apache.cxf</groupId>
-      <artifactId>cxf-rt-frontend-jaxrs</artifactId>
-      <version>${cxf.version}</version>
-    </dependency>  
-    <dependency>
-	  <groupId>org.hibernate</groupId>
-	  <artifactId>hibernate-core</artifactId>
-	  <version>${hibernate.version}</version>
+  		<groupId>org.springframework</groupId>
+  		<artifactId>spring-jdbc</artifactId>
+  		<version>${spring.version}</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.springframework</groupId>
+  		<artifactId>spring-aop</artifactId>
+  		<version>${spring.version}</version>
+  	</dependency>
+  	<dependency>
+	  <groupId>org.apache.cxf</groupId>
+	  <artifactId>cxf-rt-frontend-jaxrs</artifactId>
+	  <version>${cxf.version}</version>
 	</dependency>
 	<dependency>
 	  <groupId>org.hibernate</groupId>
@@ -29,22 +46,22 @@
 	<dependency>
 	  <groupId>commons-dbcp</groupId>
 	  <artifactId>commons-dbcp</artifactId>
-	  <version>1.2.2</version>
+	  <version>${commons-dbcp.version}</version>
 	</dependency>
 	<dependency>
 	  <groupId>com.h2database</groupId>
 	  <artifactId>h2</artifactId>
-	  <version>1.2.120</version>
+	  <version>${h2.version}</version>
 	</dependency>
 	<dependency>
 	  <groupId>org.slf4j</groupId>
 	  <artifactId>slf4j-log4j12</artifactId>
-	  <version>1.5.6</version>
+	  <version>${slf4j.version}</version>
 	</dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.5</version>
+      <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -55,9 +72,13 @@
 	</dependency>
   </dependencies>
   <properties>
-  	<spring.version>3.0.5.RELEASE</spring.version>
-  	<cxf.version>2.3.3</cxf.version>
+  	<spring.version>2.5.6</spring.version>
+  	<cxf.version>2.2.9</cxf.version>
   	<hibernate.version>3.3.2.GA</hibernate.version>
+  	<commons-dbcp.version>1.2.2</commons-dbcp.version>
+  	<h2.version>1.2.120</h2.version>
+  	<slf4j.version>1.5.6</slf4j.version>
+  	<junit.version>4.5</junit.version>
   	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <server.contextpath>${artifactId}</server.contextpath>
   </properties>
