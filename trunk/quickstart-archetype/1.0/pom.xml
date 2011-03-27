@@ -24,5 +24,19 @@
         	</configuration>
       	</plugin> 
   	</plugins>
+  	<extensions>
+  		<extension>
+	   		<groupId>org.apache.maven.wagon</groupId>
+	   		<artifactId>wagon-webdav</artifactId>
+	   		<version>1.0-beta-2</version>
+	  	</extension>
+  	</extensions>
   </build>
+  <distributionManagement>
+  	<repository>
+    	<id>googlecode.grampus.repo</id>
+        <name>Grampus Repository</name>
+        <url>https://grampus.googlecode.com/svn/repository</url>
+    </repository>
+  </distributionManagement>
 </project>
