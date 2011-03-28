@@ -20,7 +20,7 @@
 	
 	<jaxrs:server id="rest" address="/">
 		<jaxrs:serviceBeans>
-			<ref bean="${package}.rest.UserService" />
+			<ref bean="userService" />
 		</jaxrs:serviceBeans>
 		<jaxrs:extensionMappings>
 			<entry key="xml" value="application/xml" />

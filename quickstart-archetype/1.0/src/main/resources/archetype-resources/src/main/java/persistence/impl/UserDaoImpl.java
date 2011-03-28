@@ -5,7 +5,6 @@ package ${package}.persistence.impl;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,11 +21,14 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 
 	/**
 	 * 
-	 */
+	 */	
+	public UserDaoImpl() {
+		// TODO Auto-generated constructor stub		
+	}
+	
 	@Autowired
-	public UserDaoImpl(SessionFactory sessionFactory) {
-		// TODO Auto-generated constructor stub
-		setHibernateTemplate(new HibernateTemplate(sessionFactory));
+	public void setHibernateSessionFactory(SessionFactory sessionFactory) {
+		setSessionFactory(sessionFactory);
 	}
 	
 	@Transactional
