@@ -17,7 +17,7 @@ import ${package}.rest.UserService;
  * @author Bill
  *
  */
-@Service("${package}.rest.UserService")
+@Service("userService")
 public class UserServiceImpl implements UserService {
 	
 	@Autowired
