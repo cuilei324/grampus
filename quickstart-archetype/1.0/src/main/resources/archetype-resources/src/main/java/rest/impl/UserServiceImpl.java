@@ -20,27 +20,28 @@ import ${package}.rest.UserService;
 @Service("userService")
 public class UserServiceImpl implements UserService {
 	
-	@Autowired
-	private UserDao dao;
+	private UserDao userDao;
 
 	/**
 	 * 
 	 */
-	public UserServiceImpl() {
+	@Autowired
+	public UserServiceImpl(UserDao userDao) {
 		// TODO Auto-generated constructor stub
+		this.userDao = userDao;
 	}
 	
 	public Response create(String name) {
 		// TODO Auto-generated method stub
 		User user = new User();
 		user.setName(name);
-		dao.save(user);
+		userDao.save(user);
 		return Response.status(Status.OK).build();
 	}
 	
 	public User show(Long id) {
 		// TODO Auto-generated method stub
-		return dao.find(id);
+		return userDao.find(id);
 	}
 
 }
