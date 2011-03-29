@@ -21,13 +21,10 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 
 	/**
 	 * 
-	 */	
-	public UserDaoImpl() {
-		// TODO Auto-generated constructor stub		
-	}
-	
+	 */
 	@Autowired
-	public void setHibernateSessionFactory(SessionFactory sessionFactory) {
+	public UserDaoImpl(SessionFactory sessionFactory) {
+		// TODO Auto-generated constructor stub	
 		setSessionFactory(sessionFactory);
 	}
 	

@@ -8,16 +8,17 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import ${package}.model.User;
+import ${package}.persistence.UserDao;
 import ${package}.rest.impl.UserServiceImpl;
 
 /**
@@ -29,38 +30,40 @@ public class UserServiceTest {
 
 	private User user;
 	
-	private Response response;
+	private UserServiceImpl userService; 	
 	
 	@Mock
-	private UserServiceImpl userService; 	
+	private UserDao userDao;
 		
 	@Before
 	public void testSetup() {
+		userService = new UserServiceImpl(userDao);
 		user = new User();
 		user.setId(1l);
 		user.setName("bill");		
-		response = Response.status(Status.OK).build();
 	}
 	
 	@After
 	public void testShutdown() {	
 		userService = null;
+		userDao = null;
 		user = null;
 	}
 
 	@Test
 	public void testCreate() {
-		when(userService.create(user.getName())).thenReturn(response);
 		Response result = userService.create(user.getName());
-		verify(userService).create(user.getName());
+		ArgumentCaptor<User> argument = ArgumentCaptor.forClass(User.class);  
+		verify(userDao).save(argument.capture()); 
+		assertEquals("bill", argument.getValue().getName());
 		assertEquals(200, result.getStatus());
 	}
 	
 	@Test
-	public void testFind() {
-		when(userService.show(user.getId())).thenReturn(user);
+	public void testShow() {
+		when(userDao.find(user.getId())).thenReturn(user);
 		User result = userService.show(user.getId());
-		verify(userService).show(user.getId());
+		verify(userDao).find(user.getId());
 		assertEquals("bill", result.getName());
 	}
 
