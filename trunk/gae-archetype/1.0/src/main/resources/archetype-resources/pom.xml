@@ -22,7 +22,7 @@
     <dependency>
 		<groupId>org.datanucleus</groupId>
         <artifactId>datanucleus-rest</artifactId>
-        <version>2.0.0-release</version>            
+        <version>1.0.2</version>            
     </dependency>        
     <dependency>
 		<groupId>net.sf.flexjson</groupId>
