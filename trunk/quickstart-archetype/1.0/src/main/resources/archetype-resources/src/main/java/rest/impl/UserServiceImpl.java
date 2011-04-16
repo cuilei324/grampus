@@ -31,10 +31,8 @@ public class UserServiceImpl implements UserService {
 		this.userDao = userDao;
 	}
 	
-	public Response create(String name) {
+	public Response create(User user) {
 		// TODO Auto-generated method stub
-		User user = new User();
-		user.setName(name);
 		userDao.save(user);
 		return Response.status(Status.OK).build();
 	}
