@@ -7,7 +7,7 @@
   <name>Archetype - grampus-quickstart-archetype</name>
   <url>http://code.google.com/p/grampus/</url>
   <description>
-  	Archetype for Java REST Web Application with JAX-RS (Apache CXF), JPA (JBoss Hibernate), Spring and Jetty
+  	Archetype for Java REST Web Application with JAX-RS (JBoss RESTEasy), JPA (JBoss Hibernate), Spring and Jetty
   </description>
   <properties>
   	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
