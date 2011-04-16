@@ -17,7 +17,7 @@ import ${package}.rest.UserService;
  * @author Bill
  *
  */
-@Service("userService")
+@Service
 public class UserServiceImpl implements UserService {
 	
 	private UserDao userDao;
