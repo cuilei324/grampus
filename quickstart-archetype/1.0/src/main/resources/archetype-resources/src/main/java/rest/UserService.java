@@ -3,11 +3,13 @@
  */
 package ${package}.rest;
 
-import javax.ws.rs.FormParam;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import ${package}.model.User;
@@ -16,7 +18,7 @@ import ${package}.model.User;
  * @author Bill
  *
  */
-@Path("/user")
+@Path("/api/user")
 public interface UserService {
 
 	/**
@@ -25,7 +27,8 @@ public interface UserService {
 	 * @return
 	 */
 	@POST
-	Response create(@FormParam("name") String name);
+	@Consumes(MediaType.APPLICATION_JSON)
+	Response create(User user);
 	
 	/**
 	 * 
@@ -34,6 +37,7 @@ public interface UserService {
 	 */
 	@GET
 	@Path("/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
 	User show(@PathParam("id") Long id);
 	
 }

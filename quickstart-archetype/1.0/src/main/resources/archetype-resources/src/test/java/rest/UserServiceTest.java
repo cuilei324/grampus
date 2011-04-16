@@ -52,7 +52,7 @@ public class UserServiceTest {
 
 	@Test
 	public void testCreate() {
-		Response result = userService.create(user.getName());
+		Response result = userService.create(user);
 		ArgumentCaptor<User> argument = ArgumentCaptor.forClass(User.class);  
 		verify(userDao).save(argument.capture()); 
 		assertEquals("bill", argument.getValue().getName());

@@ -16,6 +16,11 @@
         <name>Java Net 2 Repository</name>
         <url>http://download.java.net/maven/2</url>
     </repository>
+    <repository>
+    	<id>jboss</id>
+        <name>jboss repo</name>
+        <url>http://repository.jboss.org/nexus/content/groups/public/</url>
+	</repository>
   </repositories>
   <dependencies>
   	<dependency>
@@ -35,14 +40,30 @@
   	</dependency>
   	<dependency>
   		<groupId>org.springframework</groupId>
+  		<artifactId>spring-webmvc</artifactId>
+  		<version>${spring.version}</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.springframework</groupId>
   		<artifactId>spring-test</artifactId>
   		<version>${spring.version}</version>
   		<scope>test</scope>
   	</dependency>
   	<dependency>
-	  <groupId>org.apache.cxf</groupId>
-	  <artifactId>cxf-rt-frontend-jaxrs</artifactId>
-	  <version>${cxf.version}</version>
+    	<groupId>org.jboss.resteasy</groupId>
+        <artifactId>resteasy-spring</artifactId>
+        <version>${resteasy.version}</version>
+	</dependency>
+    <dependency>
+    	<groupId>org.jboss.resteasy</groupId>
+        <artifactId>resteasy-jaxb-provider</artifactId>
+        <version>${resteasy.version}</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.jboss.resteasy</groupId>
+        <artifactId>tjws</artifactId>
+        <version>${resteasy.version}</version>
+        <scope>test</scope>
 	</dependency>
 	<dependency>
 	  <groupId>org.hibernate</groupId>
@@ -79,7 +100,7 @@
   </dependencies>
   <properties>
   	<spring.version>2.5.6</spring.version>
-  	<cxf.version>2.2.9</cxf.version>
+  	<resteasy.version>2.2-beta-1</resteasy.version>
   	<hibernate.version>3.3.2.GA</hibernate.version>
   	<commons-dbcp.version>1.2.2</commons-dbcp.version>
   	<h2.version>1.2.120</h2.version>
