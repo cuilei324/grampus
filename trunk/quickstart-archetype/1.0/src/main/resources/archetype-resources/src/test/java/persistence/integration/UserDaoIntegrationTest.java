@@ -4,6 +4,7 @@
 package ${package}.persistence.integration;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,7 +20,7 @@ import ${package}.persistence.UserDao;
  *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration
+@ContextConfiguration(locations={"/beans.xml"})
 public class UserDaoIntegrationTest {
 	
 	@Autowired
@@ -30,7 +31,7 @@ public class UserDaoIntegrationTest {
 		User newUser = new User();
 		newUser.setName("bill");	
 		long userId = userDao.save(newUser);
-		assertEquals(1l, userId);	
+		assertNotNull(userId);	
 		User user = userDao.find(userId);
 		assertEquals("bill", user.getName());
 	}
