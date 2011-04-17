@@ -5,6 +5,18 @@
   <artifactId>${artifactId}</artifactId>
   <version>${version}</version>
   <packaging>war</packaging>
+  <repositories>
+  	<repository>
+    	<id>maven.2</id>
+        <name>Maven 2 Repository</name>
+        <url>http://repo2.maven.org/maven2/</url>
+    </repository>
+  	<repository>
+    	<id>jboss</id>
+        <name>jboss repo</name>
+        <url>http://repository.jboss.org/nexus/content/groups/public/</url>
+	</repository>
+  </repositories>
   <dependencies>
   	<!-- Google App Engine meta-package -->
     <dependency>
@@ -19,16 +31,6 @@
         <version>${datanucleus.version}</version>
         <scope>runtime</scope>
 	</dependency>        
-    <dependency>
-		<groupId>org.datanucleus</groupId>
-        <artifactId>datanucleus-rest</artifactId>
-        <version>1.0.2</version>            
-    </dependency>        
-    <dependency>
-		<groupId>net.sf.flexjson</groupId>
-        <artifactId>flexjson</artifactId>
-        <version>2.1</version>            
-    </dependency>
 	<dependency>
 		<groupId>javax.transaction</groupId>
 		<artifactId>jta</artifactId>
@@ -45,6 +47,23 @@
 		<artifactId>logback-classic</artifactId>
 		<version>0.9.24</version>
 	</dependency>
+	<!-- Spring MVC -->
+	<dependency>
+  		<groupId>org.springframework</groupId>
+  		<artifactId>spring-webmvc</artifactId>
+  		<version>${spring.version}</version>
+  	</dependency>
+	<!-- JAX-RS RESTEasy -->
+	<dependency>
+    	<groupId>org.jboss.resteasy</groupId>
+        <artifactId>resteasy-spring</artifactId>
+        <version>${resteasy.version}</version>
+	</dependency>
+    <dependency>
+    	<groupId>org.jboss.resteasy</groupId>
+        <artifactId>resteasy-jaxb-provider</artifactId>
+        <version>${resteasy.version}</version>
+    </dependency>
 	<!-- Test scope -->
 	<dependency>
 		<groupId>junit</groupId>
@@ -224,6 +243,14 @@
 			Specify DataNucleus Version for your project
 	-->
     <datanucleus.version>1.1.5</datanucleus.version>
+    <!-- 
+			Specify RESTEasy Version for your project
+	-->
+    <resteasy.version>2.2-beta-1</resteasy.version>
+    <!-- 
+			Specify Spring Version for your project
+	-->
+    <spring.version>2.5.6</spring.version>
   </properties>
   <profiles>
 	<!--

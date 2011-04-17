@@ -10,11 +10,17 @@ import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Bill
  *
  */
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
 public class User implements Serializable {
 	
@@ -22,9 +28,11 @@ public class User implements Serializable {
 
     @PrimaryKey
     @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+    @XmlElement
     private Long id;    
 	
     @Persistent
+    @XmlElement
 	private String name;
 
 	/**
