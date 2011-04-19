@@ -20,14 +20,14 @@ import ${package}.persistence.UserDao;
 @Repository
 public class UserDaoImpl implements UserDao {
 	
-	private PersistenceManagerFactory persistenceManagerFactory;
+	private static final PersistenceManagerFactory persistenceManagerFactory = 
+		JDOHelper.getPersistenceManagerFactory("transactions-optional");
 
 	/**
 	 * 
 	 */
 	public UserDaoImpl() {
 		// TODO Auto-generated constructor stub	
-		persistenceManagerFactory = JDOHelper.getPersistenceManagerFactory("transactions-optional");
 	}
 	
 	public Long save(User newInstance) {

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package ${package}.rest.integration;
+package ${package}.integration;
 
 import static junit.framework.Assert.assertEquals;
 
@@ -21,7 +21,7 @@ import org.junit.Test;
  * @author Bill
  *
  */
-public class UserServiceIntegrationTest {
+public class UserIntegrationTest {
 
 	private static TJWSEmbeddedSpringMVCServer server;
 	
