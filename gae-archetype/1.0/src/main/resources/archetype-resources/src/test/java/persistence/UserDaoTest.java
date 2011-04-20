@@ -3,52 +3,64 @@
  */
 package ${package}.persistence;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static junit.framework.Assert.assertEquals;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
-import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import ${package}.model.User;
-import ${package}.persistence.UserDao;
 import ${package}.persistence.impl.UserDaoImpl;
+import ${package}.utils.JdoTemplate;
 
 /**
  * @author Bill
  *
  */
+@RunWith(MockitoJUnitRunner.class)  
 public class UserDaoTest {
+		
+	private User user;
 	
-	private UserDao userDao;
+	private UserDaoImpl userDao; 	
 	
-	private LocalServiceTestHelper helper = new LocalServiceTestHelper(
-			new LocalDatastoreServiceTestConfig());
-	
+	@Mock
+	private JdoTemplate jdoTemplate;
+		
 	@Before
 	public void testSetup() {
 		userDao = new UserDaoImpl();
-		helper.setUp();
+		userDao.setJdoTemplate(jdoTemplate);
+		user = new User();
+		user.setId(1l);
+		user.setName("bill");						
 	}
 	
 	@After
-	public void testShutdown() {
+	public void testShutdown() {	
 		userDao = null;
-		helper.tearDown();
+		user = null;
 	}
-		
+
 	@Test
-	public void testSaveAndFind() {
-		User newUser = new User();
-		newUser.setName("bill");	
-		long userId = userDao.save(newUser);
-		assertNotNull(userId);	
-		User user = userDao.find(userId);
-		assertEquals("bill", user.getName());
+	public void testSave() {
+		when(jdoTemplate.save(user)).thenReturn(user);
+		Long result = userDao.save(user);
+		verify(jdoTemplate).save(user);
+		assertEquals(Long.valueOf(1), result);
 	}
 	
-}
+	@Test
+	public void testFind() {
+		when(jdoTemplate.find(User.class, user.getId())).thenReturn(user);
+		User result = userDao.find(user.getId());
+		verify(jdoTemplate).find(User.class, user.getId());
+		assertEquals("bill", result.getName());
+	}
 
+}
