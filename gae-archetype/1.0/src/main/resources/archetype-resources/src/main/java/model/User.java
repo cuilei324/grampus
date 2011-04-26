@@ -3,8 +3,7 @@
  */
 package ${package}.model;
 
-import java.io.Serializable;
-
+import javax.jdo.annotations.Extension;
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
@@ -12,7 +11,6 @@ import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -22,17 +20,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
-public class User implements Serializable {
-	
-	private static final long serialVersionUID = 1L;
+public class User {
 
-    @PrimaryKey
+	@PrimaryKey
     @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
-    @XmlElement
-    private Long id;    
+    @Extension(vendorName="datanucleus", key="gae.encoded-pk", value="true")
+    private String primaryKey;  
 	
     @Persistent
-    @XmlElement
 	private String name;
 
 	/**
@@ -43,17 +38,17 @@ public class User implements Serializable {
 	}
 	
 	/**
-	 * @param id the id to set
+	 * @param primaryKey the primaryKey to set
 	 */
-	public void setId(Long id) {
-		this.id = id;
+	public void setPrimaryKey(String primaryKey) {
+		this.primaryKey = primaryKey;
 	}
 
 	/**
-	 * @return the id
+	 * @return the primaryKey
 	 */
-	public Long getId() {
-		return id;
+	public String getPrimaryKey() {
+		return primaryKey;
 	}
 	
 	/**

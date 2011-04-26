@@ -23,7 +23,7 @@ public interface UserService {
 
 	/**
 	 * 
-	 * @param name
+	 * @param user
 	 * @return
 	 */
 	@POST
@@ -32,12 +32,12 @@ public interface UserService {
 	
 	/**
 	 * 
-	 * @param id
+	 * @param primaryKey
 	 * @return
 	 */
 	@GET
-	@Path("/{id}")
+	@Path("/{primaryKey}")
 	@Produces(MediaType.APPLICATION_JSON)
-	User show(@PathParam("id") Long id);
+	User show(@PathParam("primaryKey") String primaryKey);
 	
 }

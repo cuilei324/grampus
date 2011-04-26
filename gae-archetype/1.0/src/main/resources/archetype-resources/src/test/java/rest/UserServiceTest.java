@@ -39,7 +39,7 @@ public class UserServiceTest {
 	public void testSetup() {
 		userService = new UserServiceImpl(userDao);
 		user = new User();
-		user.setId(1l);
+		user.setPrimaryKey("asa");
 		user.setName("bill");		
 	}
 	
@@ -61,9 +61,9 @@ public class UserServiceTest {
 	
 	@Test
 	public void testShow() {
-		when(userDao.find(user.getId())).thenReturn(user);
-		User result = userService.show(user.getId());
-		verify(userDao).find(user.getId());
+		when(userDao.find(user.getPrimaryKey())).thenReturn(user);
+		User result = userService.show(user.getPrimaryKey());
+		verify(userDao).find(user.getPrimaryKey());
 		assertEquals("bill", result.getName());
 	}
 

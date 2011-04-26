@@ -23,13 +23,20 @@ public class UserDaoImpl extends AbstractDaoSupport implements UserDao {
 		// TODO Auto-generated constructor stub	
 	}
 	
-	public Long save(User newInstance) {
+	/* (non-Javadoc)
+	 * @see ${package}.persistence.UserDao#save(${package}.model.User)
+	 */
+	@Override
+	public String save(User newInstance) {
 		// TODO Auto-generated method stub
-		User user = (User) getJdoTemplate().save(newInstance);
-		return user.getId();
+		return ((User) getJdoTemplate().save(newInstance)).getPrimaryKey();
 	}
-	
-	public User find(Long primaryKey) {
+
+	/* (non-Javadoc)
+	 * @see ${package}.persistence.UserDao#find(java.lang.String)
+	 */
+	@Override
+	public User find(String primaryKey) {
 		// TODO Auto-generated method stub
 		return (User) getJdoTemplate().find(User.class, primaryKey);
 	}

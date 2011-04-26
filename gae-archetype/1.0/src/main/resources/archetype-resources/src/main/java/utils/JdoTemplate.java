@@ -52,7 +52,7 @@ public class JdoTemplate {
 	 * @param primaryKey
 	 * @return
 	 */
-	public Object find(Class<?> objClass, Long primaryKey) {
+	public Object find(Class<?> objClass, String primaryKey) {
 		PersistenceManager persistenceManager = persistenceManagerFactory.getPersistenceManager();
 		Transaction transaction = persistenceManager.currentTransaction();
 		Object obj = null;
@@ -60,7 +60,10 @@ public class JdoTemplate {
             transaction.begin();      
             obj = persistenceManager.getObjectById(objClass, primaryKey);
             transaction.commit();
-        } finally {            
+        } finally {  
+        	if (transaction.isActive()) {
+            	transaction.rollback();
+            }
             persistenceManager.close();
         }
 		return obj;
