@@ -31,12 +31,20 @@ public class UserServiceImpl implements UserService {
 		this.userDao = userDao;
 	}
 	
+	/* (non-Javadoc)
+	 * @see ${package}.rest.UserService#create(${package}.model.User)
+	 */
+	@Override
 	public Response create(User user) {
 		// TODO Auto-generated method stub
 		userDao.save(user);
 		return Response.status(Status.OK).build();
 	}
 	
+	/* (non-Javadoc)
+	 * @see ${package}.rest.UserService#show(java.lang.Long)
+	 */
+	@Override
 	public User show(Long id) {
 		// TODO Auto-generated method stub
 		return userDao.find(id);

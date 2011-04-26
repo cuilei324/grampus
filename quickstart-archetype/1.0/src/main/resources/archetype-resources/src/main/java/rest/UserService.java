@@ -23,7 +23,7 @@ public interface UserService {
 
 	/**
 	 * 
-	 * @param name
+	 * @param user
 	 * @return
 	 */
 	@POST
