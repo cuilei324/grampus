@@ -37,7 +37,7 @@ public class UserDaoTest {
 		userDao = new UserDaoImpl();
 		userDao.setJdoTemplate(jdoTemplate);
 		user = new User();
-		user.setId(1l);
+		user.setPrimaryKey("asa");
 		user.setName("bill");						
 	}
 	
@@ -50,16 +50,16 @@ public class UserDaoTest {
 	@Test
 	public void testSave() {
 		when(jdoTemplate.save(user)).thenReturn(user);
-		Long result = userDao.save(user);
+		String result = userDao.save(user);
 		verify(jdoTemplate).save(user);
-		assertEquals(Long.valueOf(1), result);
+		assertEquals("asa", result);
 	}
 	
 	@Test
 	public void testFind() {
-		when(jdoTemplate.find(User.class, user.getId())).thenReturn(user);
-		User result = userDao.find(user.getId());
-		verify(jdoTemplate).find(User.class, user.getId());
+		when(jdoTemplate.find(User.class, user.getPrimaryKey())).thenReturn(user);
+		User result = userDao.find(user.getPrimaryKey());
+		verify(jdoTemplate).find(User.class, user.getPrimaryKey());
 		assertEquals("bill", result.getName());
 	}
 

@@ -16,13 +16,13 @@ public interface UserDao {
 	 * @param newInstance
 	 * @return
 	 */
-	Long save(User newInstance);
+	String save(User newInstance);
 	
 	/**
 	 * 
 	 * @param primaryKey
 	 * @return
 	 */
-	User find(Long primaryKey);
+	User find(String primaryKey);
 	
 }
