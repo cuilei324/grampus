@@ -20,9 +20,9 @@ public interface UserDao {
 	
 	/**
 	 * 
-	 * @param primaryKey
+	 * @param id
 	 * @return
 	 */
-	User find(String primaryKey);
+	User find(String id);
 	
 }
