@@ -37,7 +37,7 @@ public class UserDaoTest {
 		userDao = new UserDaoImpl();
 		userDao.setJdoTemplate(jdoTemplate);
 		user = new User();
-		user.setPrimaryKey("asa");
+		user.setId("asa");
 		user.setName("bill");						
 	}
 	
@@ -57,9 +57,9 @@ public class UserDaoTest {
 	
 	@Test
 	public void testFind() {
-		when(jdoTemplate.find(User.class, user.getPrimaryKey())).thenReturn(user);
-		User result = userDao.find(user.getPrimaryKey());
-		verify(jdoTemplate).find(User.class, user.getPrimaryKey());
+		when(jdoTemplate.find(User.class, user.getId())).thenReturn(user);
+		User result = userDao.find(user.getId());
+		verify(jdoTemplate).find(User.class, user.getId());
 		assertEquals("bill", result.getName());
 	}
 

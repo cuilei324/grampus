@@ -49,16 +49,16 @@ public class JdoTemplate {
 	/**
 	 * 
 	 * @param objClass
-	 * @param primaryKey
+	 * @param id
 	 * @return
 	 */
-	public Object find(Class<?> objClass, String primaryKey) {
+	public Object find(Class<?> objClass, String id) {
 		PersistenceManager persistenceManager = persistenceManagerFactory.getPersistenceManager();
 		Transaction transaction = persistenceManager.currentTransaction();
 		Object obj = null;
 		try {
             transaction.begin();      
-            obj = persistenceManager.getObjectById(objClass, primaryKey);
+            obj = persistenceManager.getObjectById(objClass, id);
             transaction.commit();
         } finally {  
         	if (transaction.isActive()) {
