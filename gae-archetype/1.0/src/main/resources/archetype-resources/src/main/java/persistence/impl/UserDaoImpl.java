@@ -8,6 +8,7 @@ import javax.jdo.PersistenceManagerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.jdo.support.JdoDaoSupport;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import ${package}.model.User;
 import ${package}.persistence.UserDao;
@@ -17,6 +18,7 @@ import ${package}.persistence.UserDao;
  *
  */
 @Repository
+@Transactional
 public class UserDaoImpl extends JdoDaoSupport implements UserDao {
 
 	/**
