@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  */
 @XmlRootElement
-@XmlAccessorType(XmlAccessType.FIELD)
+@XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
 public class User {
 

@@ -7,7 +7,7 @@
   <name>Archetype - grampus-gae-archetype</name>
   <url>http://code.google.com/p/grampus/</url>
   <description>
-  	Archetype for Java REST Web Application with JAX-RS (JBoss RESTEasy), Spring MVC and GAE (Google App Engine) 
+  	Archetype for Java REST Web Application with JAX-RS (JBoss RESTEasy), Spring and GAE (Google App Engine) 
   </description>
   <properties>
   	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
