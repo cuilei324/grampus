@@ -9,20 +9,26 @@ import static org.junit.Assert.assertNotNull;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
 import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
 
 import ${package}.model.User;
 import ${package}.persistence.UserDao;
-import ${package}.persistence.impl.UserDaoImpl;
 
 /**
  * @author Bill
  *
  */
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations={"/beans.xml"})
 public class UserDaoIntegrationTest {
 	
+	@Autowired
 	private UserDao userDao;
 	
 	private LocalServiceTestHelper helper = new LocalServiceTestHelper(
@@ -30,13 +36,11 @@ public class UserDaoIntegrationTest {
 	
 	@Before
 	public void testSetup() {
-		userDao = new UserDaoImpl();
 		helper.setUp();
 	}
 	
 	@After
 	public void testShutdown() {
-		userDao = null;
 		helper.tearDown();
 	}
 		

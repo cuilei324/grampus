@@ -10,8 +10,6 @@
     http://www.springframework.org/schema/tx 
     http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
     
-	<import resource="classpath:springmvc-resteasy.xml" />
-	
 	<context:annotation-config />
 	<context:component-scan base-package="${package}" />
 	
