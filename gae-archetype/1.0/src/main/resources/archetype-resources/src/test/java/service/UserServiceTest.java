@@ -1,25 +1,24 @@
 /**
  * 
  */
-package ${package}.rest;
+package ${package}.service;
 
 import static junit.framework.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import javax.ws.rs.core.Response;
+import javax.jdo.PersistenceManagerFactory;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.orm.jdo.JdoTemplate;
 
 import ${package}.model.User;
-import ${package}.persistence.UserDao;
-import ${package}.rest.impl.UserServiceImpl;
+import ${package}.service.restful.UserRestfulService;
 
 /**
  * @author Bill
@@ -30,14 +29,18 @@ public class UserServiceTest {
 
 	private User user;
 	
-	private UserServiceImpl userService; 	
+	private UserRestfulService userService; 	
 	
 	@Mock
-	private UserDao userDao;
+	private PersistenceManagerFactory persistenceManagerFactory;
+	
+	@Mock
+	private JdoTemplate jdoTemplate;
 		
 	@Before
 	public void testSetup() {
-		userService = new UserServiceImpl(userDao);
+		userService = new UserRestfulService(persistenceManagerFactory);
+		userService.setJdoTemplate(jdoTemplate);
 		user = new User();
 		user.setId("asa");
 		user.setName("bill");		
@@ -46,24 +49,22 @@ public class UserServiceTest {
 	@After
 	public void testShutdown() {	
 		userService = null;
-		userDao = null;
 		user = null;
 	}
 
 	@Test
 	public void testCreate() {
-		Response result = userService.create(user);
-		ArgumentCaptor<User> argument = ArgumentCaptor.forClass(User.class);  
-		verify(userDao).save(argument.capture()); 
-		assertEquals("bill", argument.getValue().getName());
-		assertEquals(200, result.getStatus());
+		when(jdoTemplate.makePersistent(user)).thenReturn(user);
+		User result = userService.create(user);
+		verify(jdoTemplate).makePersistent(user); 
+		assertEquals("bill", result.getName());
 	}
 	
 	@Test
 	public void testShow() {
-		when(userDao.find(user.getId())).thenReturn(user);
+		when(jdoTemplate.getObjectById(User.class, user.getId())).thenReturn(user);
 		User result = userService.show(user.getId());
-		verify(userDao).find(user.getId());
+		verify(jdoTemplate).getObjectById(User.class, user.getId());
 		assertEquals("bill", result.getName());
 	}
 
