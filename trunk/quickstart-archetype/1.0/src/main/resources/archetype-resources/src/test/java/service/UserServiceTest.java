@@ -1,7 +1,7 @@
 /**
  * 
  */
-package ${package}.persistence;
+package ${package}.service;
 
 import static junit.framework.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
@@ -17,18 +17,18 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
 import ${package}.model.User;
-import ${package}.persistence.impl.UserDaoImpl;
+import ${package}.service.restful.UserRestfulService;
 
 /**
  * @author Bill
  *
  */
 @RunWith(MockitoJUnitRunner.class)  
-public class UserDaoTest {
-		
+public class UserServiceTest {
+
 	private User user;
 	
-	private UserDaoImpl userDao; 	
+	private UserRestfulService userService; 	
 	
 	@Mock
 	private SessionFactory sessionFactory;
@@ -38,31 +38,33 @@ public class UserDaoTest {
 		
 	@Before
 	public void testSetup() {
-		userDao = new UserDaoImpl(sessionFactory);
-		userDao.setHibernateTemplate(hibernateTemplate);
+		userService = new UserRestfulService(sessionFactory);
+		userService.setHibernateTemplate(hibernateTemplate);
 		user = new User();
 		user.setId(1l);
-		user.setName("bill");						
+		user.setName("bill");		
 	}
 	
 	@After
 	public void testShutdown() {	
-		userDao = null;
+		userService = null;
 		user = null;
 	}
 
 	@Test
-	public void testSave() {
+	public void testCreate() {
 		when(hibernateTemplate.save(user)).thenReturn(user.getId());
-		Long result = userDao.save(user);
+		when(hibernateTemplate.get(User.class, user.getId())).thenReturn(user);
+		User result = userService.create(user); 
 		verify(hibernateTemplate).save(user);
-		assertEquals(Long.valueOf(1), result);
+		verify(hibernateTemplate).get(User.class, user.getId());
+		assertEquals("bill", result.getName());
 	}
 	
 	@Test
-	public void testFind() {
+	public void testShow() {
 		when(hibernateTemplate.get(User.class, user.getId())).thenReturn(user);
-		User result = userDao.find(user.getId());
+		User result = userService.show(user.getId());
 		verify(hibernateTemplate).get(User.class, user.getId());
 		assertEquals("bill", result.getName());
 	}
